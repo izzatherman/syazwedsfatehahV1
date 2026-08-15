@@ -78,9 +78,11 @@ function renderContent(){
       <h3>${esc(p.name)}</h3>
       <p>${esc(p.role)}</p>
       <div class="contact-buttons">
-        <a class="contact-button" href="tel:+${esc(p.phone)}" aria-label="Call ${esc(p.name)}">&#9742;</a>
-        <a class="contact-button" href="${waLink(p.phone, 'Assalamualaikum, saya nak bertanya pasal majlis Fatehah & Syazril.')}"
-           target="_blank" rel="noopener" aria-label="WhatsApp ${esc(p.name)}">&#9679;</a>
+        <a class="contact-button" href="tel:+${esc(p.phone)}" aria-label="Call ${esc(p.name)}">
+          <svg aria-hidden="true"><use href="#i-phone"></use></svg></a>
+        <a class="contact-button wa" href="${waLink(p.phone, 'Assalamualaikum, saya nak bertanya pasal majlis Fatehah & Syazril.')}"
+           target="_blank" rel="noopener" aria-label="WhatsApp ${esc(p.name)}">
+          <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg></a>
       </div>
     </div>`).join('');
 
@@ -164,7 +166,8 @@ function openInvitation(){
   document.body.classList.add('unsealing');
   setTimeout(() => {
     document.body.classList.add('opened');
-    $('#invitation').scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth'});
+    // the page is already at the top — that IS the photo page. Don't scroll past it.
+    scrollTo({top: 0, behavior: 'auto'});
   }, reduceMotion ? 0 : 1250);
 }
 
@@ -443,6 +446,74 @@ function initRsvp(){
   }
 }
 
+
+/* ─── WISHES SLIDER ──────────────────────────────────────── */
+async function initWishes(){
+  const section = $('#wishes');
+  if (!section || !C.rsvp.endpoint) return;
+
+  let wishes = [];
+  try {
+    const res  = await fetch(`${C.rsvp.endpoint}?wishes=1&t=${Date.now()}`);
+    const data = await res.json();
+    wishes = (data.wishes || []).filter(w => w.wish && w.wish.trim());
+  } catch { return; }
+  if (!wishes.length) return;
+
+  const track = $('#wishTrack'), dots = $('#wishDots');
+  section.hidden = false;
+
+  track.innerHTML = wishes.map(w => `
+    <figure class="wish-card">
+      <span class="mark" aria-hidden="true">&ldquo;</span>
+      <p>${esc(w.wish)}</p>
+      <cite>— ${esc(w.name)}</cite>
+    </figure>`).join('');
+
+  dots.innerHTML = wishes.map((_, i) =>
+    `<button type="button" aria-label="Wish ${i + 1}" aria-current="${i === 0}"></button>`).join('');
+
+  const cards = $$('.wish-card', track);
+  const bullets = $$('button', dots);
+  let index = 0, timer = null;
+
+  const goTo = (i, smooth = true) => {
+    index = (i + cards.length) % cards.length;
+    const card = cards[index];
+    track.scrollTo({
+      left: card.offsetLeft - (track.clientWidth - card.clientWidth) / 2,
+      behavior: smooth && !reduceMotion ? 'smooth' : 'auto'
+    });
+    bullets.forEach((b, n) => b.setAttribute('aria-current', String(n === index)));
+  };
+
+  const play  = () => { if (cards.length > 1 && !reduceMotion) timer = setInterval(() => goTo(index + 1), 5500); };
+  const pause = () => { clearInterval(timer); timer = null; };
+  const nudge = () => { pause(); setTimeout(play, 9000); };
+
+  $('#wishNext').addEventListener('click', () => { goTo(index + 1); nudge(); });
+  $('#wishPrev').addEventListener('click', () => { goTo(index - 1); nudge(); });
+  bullets.forEach((b, i) => b.addEventListener('click', () => { goTo(i); nudge(); }));
+  track.addEventListener('pointerdown', pause);
+  track.addEventListener('scroll', () => {
+    // keep the dots in sync when the guest swipes
+    const mid = track.scrollLeft + track.clientWidth / 2;
+    let nearest = 0;
+    cards.forEach((c, i) => {
+      if (Math.abs(c.offsetLeft + c.clientWidth / 2 - mid) <
+          Math.abs(cards[nearest].offsetLeft + cards[nearest].clientWidth / 2 - mid)) nearest = i;
+    });
+    index = nearest;
+    bullets.forEach((b, n) => b.setAttribute('aria-current', String(n === index)));
+  }, {passive: true});
+
+  // only auto-advance while the section is on screen
+  new IntersectionObserver(([entry]) => entry.isIntersecting ? play() : pause(),
+    {threshold: .25}).observe(section);
+
+  $$('.rv', section).forEach(el => el.classList.add('in'));
+}
+
 /* ─── BOOT ───────────────────────────────────────────────── */
 renderContent();
 buildHearts();
@@ -451,6 +522,7 @@ initMotion();
 initPetals();
 initCalendar();
 initRsvp();
+initWishes();
 $('#openInvite').addEventListener('click', openInvitation);
 
 })();

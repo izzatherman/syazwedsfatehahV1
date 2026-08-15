@@ -20,7 +20,7 @@ window.CONFIG = {
     start: '2026-12-12T11:00:00+08:00',
     end:   '2026-12-12T16:00:00+08:00',
     dateLabel: '12 December 2026',
-    timeLabel: '11:00AM – 4:00PM',
+    timeLabel: '11:30AM – 3:30PM',
     venue:   'Laman Sri Pinang',
     address: '1478 Persiaran Diana, Batu 4, Jalan Pantai,\n71050 Port Dickson, Negeri Sembilan',
     waze:  'https://ul.waze.com/ul?place=ChIJlXOTsIfxzTERS6HaK9siVlE&ll=2.50207780%2C101.83939900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location',
@@ -32,7 +32,7 @@ window.CONFIG = {
     { time: '12:30PM', text: 'Entrance of Bride & Groom',     icon: 'rings'  },
     { time: '1:30PM',  text: 'Makan Beradab',                 icon: 'dining' },
     { time: '2:30PM',  text: 'Photography Session',           icon: 'camera' },
-    { time: '4:00PM',  text: 'Majlis Bersurai',               icon: 'heart'  }
+    { time: '3:30PM',  text: 'Majlis Bersurai',               icon: 'heart'  }
   ],
 
   /* ── RSVP ───────────────────────────────────────────────── */

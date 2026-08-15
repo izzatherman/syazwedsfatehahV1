@@ -62,8 +62,8 @@ window.CONFIG = {
 
   /* ── Story photos (the two polaroids on the lace hearts) ── */
   photos: [
-    { src: 'assets/img/photo-1.jpg', alt: 'Fatehah as a child', tilt: -5 },
-    { src: 'assets/img/photo-2.jpg', alt: 'Syazril as a child', tilt:  6 }
+    { src: 'assets/img/photo-1.jpg.png',  alt: 'Fatehah as a child', tilt: -5 },
+    { src: 'assets/img/photo-2.jpg.jpeg', alt: 'Syazril as a child', tilt:  6 }
   ],
 
   /* ── Music ──────────────────────────────────────────────── */

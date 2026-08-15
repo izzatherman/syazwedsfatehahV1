@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #211813; font-family: Arial, sans-serif; }
+
+    #welcome {
+      position: fixed; inset: 0; z-index: 10;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; color: white; padding: 24px;
+      background: linear-gradient(rgba(35,22,15,.45), rgba(35,22,15,.78)), #5b4030;
+    }
+
+    h1 { font-family: Georgia, serif; font-size: clamp(34px, 8vw, 58px); margin: 0 0 12px; }
+    p { margin: 0 0 28px; font-size: 16px; }
+
+    button {
+      border: 0; border-radius: 999px; padding: 16px 30px;
+      font-size: 16px; cursor: pointer; color: #3c281d;
+      background: #f5dfae;
+    }
+
+    iframe { width: 100%; height: 100vh; border: 0; display: block; }
+  </style>
+</head>
+<body>
+
+  <div id="welcome">
+    <h1>You're Invited</h1>
+    <p>Tap below to open our wedding invitation</p>
+    <button onclick="enterInvitation()">Tap to Enter ♡</button>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <iframe
+    src="https://syazrilfatehahinvitation.my.canva.site/syazwedsfatehah"
+    allowfullscreen="allowfullscreen"
+    allow="fullscreen">
+  </iframe>
+
+  <script>
+    function enterInvitation() {
+      document.getElementById("bgMusic").play();
+      document.getElementById("welcome").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

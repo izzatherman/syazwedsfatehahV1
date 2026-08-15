@@ -99,12 +99,9 @@ function renderContent(){
 /* ─── LACE HEARTS ────────────────────────────────────────── */
 const HEART_D = 'M100,178 C40,132 8,100 8,64 A44,44 0 0 1 100,40 A44,44 0 0 1 192,64 C192,100 160,132 100,178 Z';
 
-function buildHearts(){
-  const host = $('#hearts');
-  if (!host || !C.photos || !C.photos.length){ if (host) host.closest('section').hidden = true; return; }
-
-  host.innerHTML = C.photos.slice(0, 2).map((photo, i) => `
-    <figure class="heart-frame" style="margin:0">
+function heartFrame(photo, cls, i){
+  return `
+    <figure class="heart-frame ${cls}" style="margin:0">
       <svg viewBox="-12 -12 224 212" aria-hidden="true">
         <defs><mask id="lace${i}">
           <path d="${HEART_D}" fill="#fff"/>
@@ -119,25 +116,31 @@ function buildHearts(){
       <div class="polaroid" style="--tilt:${photo.tilt}deg">
         <img src="${esc(photo.src)}" alt="${esc(photo.alt || '')}" data-slot="${i + 1}" loading="lazy" decoding="async">
       </div>
-    </figure>`).join('');
+    </figure>`;
+}
 
-  // graceful placeholder until the real photo is added
+function buildHearts(){
+  const host = $('#hearts');
+  if (!host || !C.photos || !C.photos.length){ if (host) host.closest('section').hidden = true; return; }
+
+  const kids = C.photos.slice(0, 2).map((photo, i) => heartFrame(photo, 'kid', i)).join('');
+  const couple = C.couplePhoto && C.couplePhoto.src ? heartFrame(C.couplePhoto, 'couple', 2) : '';
+  host.innerHTML = kids + couple;
+
+  // graceful placeholder until a photo file exists
   $$('#hearts img').forEach(img => img.addEventListener('error', () => {
-    const slot = img.dataset.slot;
     const box = document.createElement('div');
     box.className = 'ph';
-    box.textContent = `ADD PHOTO ${slot}`;
+    box.textContent = `ADD PHOTO ${img.dataset.slot}`;
     img.replaceWith(box);
   }));
 
-  // punch the lace holes along the heart outline
+  // punch the lace holes along each heart outline
   $$('#hearts svg').forEach(svg => {
-    const path = svg.querySelector('path[fill="#FFFDF9"]');
     const holes = svg.querySelector('.holes');
     const outline = svg.querySelector('mask path');
     const len = outline.getTotalLength();
 
-    // sample points around the outline, scaled toward the centre by `inset`
     const ring = (inset, r, step) => {
       let out = '';
       for (let d = 0; d < len; d += step){
@@ -153,8 +156,49 @@ function buildHearts(){
     svg.querySelector('.scallop').innerHTML = scallops;
     svg.querySelector('.scallop-mask').innerHTML = scallops;
     holes.innerHTML = ring(.90, 2.5, 8.5) + ring(.79, 1.6, 9.5);
-    void path;
   });
+
+  if (couple) startStoryLoop(host);
+}
+
+/* two childhood hearts drift together and become the couple — on a gentle loop */
+function startStoryLoop(host){
+  const caption = $('#storyCaption');
+  const story = C.story || {};
+  const say = text => {
+    if (!caption) return;
+    caption.classList.remove('show');
+    setTimeout(() => { caption.textContent = text; caption.classList.add('show'); }, 320);
+  };
+
+  // reduced motion: skip the animation, show the couple and both captions' meaning
+  if (reduceMotion){
+    host.classList.add('merged');
+    say(story.now || '');
+    return;
+  }
+
+  let merged = false, timer = null, running = false;
+
+  const step = () => {
+    merged = !merged;
+    host.classList.toggle('merged', merged);
+    say(merged ? (story.now || '') : (story.then || ''));
+    timer = setTimeout(step, merged ? (story.holdCouple || 4600) : (story.holdKids || 3400));
+  };
+
+  const play = () => {
+    if (running) return;
+    running = true;
+    say(merged ? (story.now || '') : (story.then || ''));
+    timer = setTimeout(step, merged ? (story.holdCouple || 4600) : (story.holdKids || 3400));
+  };
+  const pause = () => { running = false; clearTimeout(timer); };
+
+  // only animate while the section is on screen, and never in a background tab
+  new IntersectionObserver(([entry]) => entry.isIntersecting ? play() : pause(),
+    {threshold: .2}).observe(host.closest('section'));
+  document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());
 }
 
 /* ─── 3. COVER / ENVELOPE ────────────────────────────────── */
@@ -514,6 +558,131 @@ async function initWishes(){
   $$('.rv', section).forEach(el => el.classList.add('in'));
 }
 
+
+/* ─── WISHLIST ───────────────────────────────────────────── */
+function initWishlist(){
+  const section = $('#wishlist');
+  const list = ((C.wishlist && C.wishlist.items) || []).filter(i => i.name && i.name.trim());
+  if (!section || !list.length) return;
+
+  section.hidden = false;
+  $('#wlIntro').textContent = C.wishlist.intro || '';
+
+  const grid = $('#wlGrid');
+  let reserved = {};                       // { itemId: count }
+
+  const render = () => {
+    grid.innerHTML = list.map(item => {
+      const taken = reserved[item.id] || 0;
+      const qty   = Math.max(1, item.qty || 1);
+      const full  = taken >= qty;
+      const left  = qty - taken;
+
+      const thumb = item.image
+        ? `<img src="${esc(item.image)}" alt="${esc(item.name)}" loading="lazy" decoding="async">`
+        : `<span class="ph">${esc((item.name || '?').trim().charAt(0))}</span>`;
+
+      return `
+        <article class="wl-card${full ? ' taken' : ''}" data-id="${esc(item.id)}">
+          <div class="wl-thumb">
+            ${full ? '<span class="wl-badge">Reserved</span>' : ''}
+            ${thumb}
+          </div>
+          <div class="wl-body">
+            <h3>${esc(item.name)}</h3>
+            ${item.note ? `<p class="note">${esc(item.note)}</p>` : '<p class="note"></p>'}
+            ${item.price ? `<span class="price">${esc(item.price)}</span>` : ''}
+            ${qty > 1 ? `<span class="wl-count">${taken} of ${qty} reserved</span>` : ''}
+            <div class="wl-actions">
+              ${item.url ? `<a class="pill ghost" href="${esc(item.url)}" target="_blank" rel="noopener">View item</a>` : ''}
+              ${full
+                ? '<span class="pill ghost" aria-disabled="true" style="opacity:.55;pointer-events:none">Already reserved</span>'
+                : `<button class="pill" type="button" data-reserve="${esc(item.id)}">I'm getting this</button>`}
+            </div>
+          </div>
+        </article>`;
+    }).join('');
+  };
+
+  render();
+
+  /* ── live counts from the sheet ── */
+  const refresh = async () => {
+    if (!C.rsvp.endpoint) return;
+    try {
+      const res  = await fetch(`${C.rsvp.endpoint}?wishlist=1&t=${Date.now()}`);
+      const data = await res.json();
+      if (data.ok && data.reserved){ reserved = data.reserved; render(); }
+    } catch { /* offline — the cards still render, just without status */ }
+  };
+  refresh();
+
+  /* ── reserve dialog ── */
+  const modal = $('#wlModal'), form = $('#wlForm'), submit = $('#wlSubmit');
+  let current = null;
+
+  const openModal = item => {
+    current = item;
+    $('#wlModalItem').textContent = item.name;
+    $('[data-err="wlname"]').textContent = '';
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => $('#wlName').focus(), 60);
+  };
+  const closeModal = () => {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    current = null;
+  };
+
+  grid.addEventListener('click', event => {
+    const btn = event.target.closest('[data-reserve]');
+    if (!btn) return;
+    const item = list.find(i => i.id === btn.dataset.reserve);
+    if (item) openModal(item);
+  });
+  modal.addEventListener('click', e => { if (e.target.hasAttribute('data-close')) closeModal(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!current) return;
+    const name = $('#wlName').value.trim();
+    if (name.length < 2){ $('[data-err="wlname"]').textContent = 'Please enter your name'; return; }
+
+    submit.disabled = true;
+    submit.textContent = 'Saving…';
+
+    // optimistic — the guest sees it taken straight away
+    reserved[current.id] = (reserved[current.id] || 0) + 1;
+    const itemName = current.name, itemId = current.id;
+
+    try {
+      if (C.rsvp.endpoint){
+        await fetch(C.rsvp.endpoint, {
+          method: 'POST',
+          body: new URLSearchParams({
+            type: 'wishlist',
+            itemId,
+            itemName,
+            name,
+            phone: $('#wlPhone').value.trim()
+          })
+        });
+      }
+      toast('Thank you — marked as reserved');
+    } catch {
+      toast('Saved on this device — please tell the couple too');
+    }
+
+    render();
+    closeModal();
+    form.reset();
+    submit.disabled = false;
+    submit.textContent = 'Yes, I’m getting this';
+  });
+}
+
 /* ─── BOOT ───────────────────────────────────────────────── */
 renderContent();
 buildHearts();
@@ -523,6 +692,7 @@ initPetals();
 initCalendar();
 initRsvp();
 initWishes();
+initWishlist();
 $('#openInvite').addEventListener('click', openInvitation);
 
 })();

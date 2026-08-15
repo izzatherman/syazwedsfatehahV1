@@ -20,7 +20,7 @@ window.CONFIG = {
     start: '2026-12-12T11:00:00+08:00',
     end:   '2026-12-12T16:00:00+08:00',
     dateLabel: '12 December 2026',
-    timeLabel: '11:30AM – 3:30PM',
+    timeLabel: '11:00AM – 4:00PM',
     venue:   'Laman Sri Pinang',
     address: '1478 Persiaran Diana, Batu 4, Jalan Pantai,\n71050 Port Dickson, Negeri Sembilan',
     waze:  'https://ul.waze.com/ul?place=ChIJlXOTsIfxzTERS6HaK9siVlE&ll=2.50207780%2C101.83939900&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location',
@@ -65,6 +65,30 @@ window.CONFIG = {
     { src: 'assets/img/photo-1.jpg.png',  alt: 'Fatehah as a child', tilt: -5 },
     { src: 'assets/img/photo-2.jpg.jpeg', alt: 'Syazril as a child', tilt:  6 }
   ],
+
+  /* ── The "then → now" photo transition ── */
+  couplePhoto: { src: 'assets/img/couple.jpg', alt: 'Fatehah & Syazril today', tilt: -2 },
+  story: {
+    then: 'Once upon a time…',
+    now:  '…and now, forever',
+    holdKids:   3400,     // ms the childhood photos stay
+    holdCouple: 4600      // ms the couple photo stays
+  },
+
+  /* ── Wishlist ───────────────────────────────────────────── */
+  wishlist: {
+    intro: 'A few things that would help us start our new home. Tap an item to view it, and let us know if you’re getting it so nobody doubles up.',
+    // qty  = how many of this item you'd like (2 means two people can each get one)
+    // url  = Shopee / Lazada / anywhere. image = optional.
+    items: [
+      // Fill these in. Add or remove rows freely — the page adapts.
+      // id must stay unique and must NOT change once guests start reserving.
+      { id: 'w1', name: '',  note: '',  price: '', qty: 1, url: '', image: '' },
+      { id: 'w2', name: '',  note: '',  price: '', qty: 1, url: '', image: '' },
+      { id: 'w3', name: '',  note: '',  price: '', qty: 1, url: '', image: '' },
+      { id: 'w4', name: '',  note: '',  price: '', qty: 1, url: '', image: '' }
+    ]
+  },
 
   /* ── Music ──────────────────────────────────────────────── */
   music: { src: 'assets/audio/song.mp3', volume: .4 },

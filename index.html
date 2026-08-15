@@ -63,6 +63,7 @@
   <!-- ══════════ MAIN PAGE (polaroids on lace hearts) ══════════ -->
   <section class="photo-hero" id="story">
     <div class="bg"></div><div class="bg-tint"></div>
+    <p class="story-caption" id="storyCaption" aria-live="off"></p>
     <div class="hearts rv" id="hearts"></div>
     <h2 class="hero-script rv" style="--i:1"><span>Fatehah</span><i>&amp;</i><span>Syazril</span></h2>
   </section>
@@ -211,6 +212,14 @@
     <div class="acct rv" style="--i:3" id="acct"></div>
   </section>
 
+  <!-- ══════════ WISHLIST ══════════ -->
+  <section class="wishlist" id="wishlist" hidden>
+    <h2 class="orange-title rv">Wishlist</h2>
+    <p class="wl-intro rv" style="--i:1" id="wlIntro"></p>
+    <div class="wl-grid rv" style="--i:2" id="wlGrid"></div>
+    <p class="wl-foot rv" style="--i:3">Reserving simply tells other guests it’s taken — nothing is charged here, and you buy it wherever you like.</p>
+  </section>
+
   <!-- ══════════ CONTACT ══════════ -->
   <section class="contact" id="contact">
     <article class="paper-card rv">
@@ -231,6 +240,29 @@
   <span class="eq"><i></i><i></i><i></i></span>
 </button>
 <div class="toast" id="toast" role="status"></div>
+
+<!-- reserve-an-item dialog -->
+<div class="modal" id="wlModal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="wlModalTitle">
+    <button class="modal-x" type="button" data-close aria-label="Close">&times;</button>
+    <h3 id="wlModalTitle">Reserve this gift</h3>
+    <p class="modal-item" id="wlModalItem"></p>
+    <form id="wlForm" novalidate>
+      <div class="field">
+        <label for="wlName">Your name</label>
+        <input id="wlName" name="name" type="text" placeholder="Nama penuh" autocomplete="name" required>
+        <span class="err" data-err="wlname"></span>
+      </div>
+      <div class="field">
+        <label for="wlPhone">Phone <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+        <input id="wlPhone" name="phone" type="tel" inputmode="tel" placeholder="012-345 6789" autocomplete="tel">
+      </div>
+      <button class="pill" type="submit" id="wlSubmit">Yes, I’m getting this</button>
+      <p class="modal-note">Other guests only see that it’s taken. Your name stays hidden until after the reception — then the couple can thank you properly.</p>
+    </form>
+  </div>
+</div>
 
 <!-- icon sprite -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>

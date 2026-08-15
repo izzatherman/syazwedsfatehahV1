@@ -71,8 +71,8 @@ window.CONFIG = {
   story: {
     then: 'Once upon a time…',
     now:  '…and now, forever',
-    holdKids:   3400,     // ms the childhood photos stay
-    holdCouple: 4600      // ms the couple photo stays
+    holdKids:   3000,     // ms the childhood photos stay
+    holdCouple: 6000      // ms the couple photo stays
   },
 
   /* ── Wishlist ───────────────────────────────────────────── */

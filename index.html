@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#EFEFE8">
+<title>Fatehah &amp; Syazril · 12 December 2026</title>
+<meta name="description" content="With the blessing of our families, we invite you to celebrate our wedding — 12 December 2026, Laman Sri Pinang, Port Dickson.">
+
+<!-- share preview (WhatsApp / Telegram / iMessage) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fatehah &amp; Syazril · 12 December 2026">
+<meta property="og:description" content="Laman Sri Pinang, Port Dickson · 11:00AM – 4:00PM. Tap to open your invitation.">
+<meta property="og:image" content="https://izzatherman.github.io/syazwedsfatehahV1/assets/img/og-cover.jpg">
+<meta property="og:url" content="https://izzatherman.github.io/syazwedsfatehahV1/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/img/hero.webp" fetchpriority="high">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<audio id="music" loop preload="none"></audio>
+
+<!-- ══════════ COVER ══════════ -->
+<section class="cover" id="cover" aria-label="Open wedding invitation">
+  <div class="bg"></div><div class="bg-tint"></div>
+  <canvas id="petals" aria-hidden="true"></canvas>
+  <div class="cover-inner">
+    <p class="guest-line" id="guestLine">You are cordially invited</p>
+    <p class="cover-kicker">YOU’VE GOT MAIL FROM</p>
+    <h1 class="script-names"><span>Fatehah</span> <i>&amp;</i> <span>Syazril</span></h1>
+
+    <button class="open-button" id="openInvite" type="button" aria-label="Tap the envelope to open">
+      <span class="envelope">
+        <span class="env-back"></span>
+        <span class="env-letter">Fatehah &amp; Syazril<small>12 · 12 · 2026</small></span>
+        <span class="env-front"></span>
+        <span class="env-flap"></span>
+        <span class="seal" aria-hidden="true">F&amp;S</span>
+      </span>
+    </button>
+
+    <p class="tap-copy">TAP ENVELOPE TO OPEN</p>
+  </div>
+</section>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="site-nav" aria-label="Wedding navigation">
+  <a class="site-brand" href="#invitation">SyazWedsFatehah</a>
+  <a href="#story">Main</a>
+  <a href="#invitation">Invitation</a>
+  <a href="#details">Details</a>
+  <a href="#rsvp">RSVP</a>
+  <a href="#registry">Gift</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+  <!-- ══════════ MAIN PAGE (polaroids on lace hearts) ══════════ -->
+  <section class="photo-hero" id="story">
+    <div class="bg"></div><div class="bg-tint"></div>
+    <div class="hearts rv" id="hearts"></div>
+    <h2 class="hero-script rv" style="--i:1"><span>Fatehah</span><i>&amp;</i><span>Syazril</span></h2>
+  </section>
+
+  <!-- ══════════ INVITATION ══════════ -->
+  <section class="invitation-scene" id="invitation">
+    <div class="bg"></div><div class="bg-tint"></div>
+    <article class="lace-card rv">
+      <p class="arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
+      <p class="verse">“And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought” — Ar-Rum, Ayah 21</p>
+      <div class="flourish">❦</div>
+      <p class="invite-line">In the Name of Allah, the Most Gracious, the Most Merciful</p>
+      <p class="parents" data-parents="0"></p>
+      <p class="invite-line">together with</p>
+      <p class="parents" data-parents="1"></p>
+      <p class="invite-line">cordially invite you to celebrate the wedding of their beloved children</p>
+      <p class="couple-full" id="coupleFull"></p>
+      <div class="flourish">❦</div>
+    </article>
+  </section>
+
+  <!-- ══════════ COUNTDOWN ══════════ -->
+  <section class="countdown-section">
+    <h2 class="orange-title rv">Happily Ever After Begins In</h2>
+    <div class="countdown rv" id="countdown" style="--i:1" aria-label="Wedding countdown"></div>
+  </section>
+
+  <!-- ══════════ DIVIDER ══════════ -->
+  <section class="photo-divider">
+    <div class="bg"></div><div class="bg-tint"></div>
+    <h2 class="rv">The Details</h2>
+  </section>
+
+  <!-- ══════════ DETAILS ══════════ -->
+  <section class="details" id="details">
+    <h2 class="orange-title rv">Date and<br>Location</h2>
+    <div class="details-grid">
+      <div class="detail-block rv"><h3>Date</h3><p id="dDate"></p></div>
+      <div class="detail-block rv" style="--i:1"><h3>Time</h3><p id="dTime"></p></div>
+      <div class="detail-block location rv" style="--i:2">
+        <h3>Location</h3>
+        <p id="dVenue"></p>
+        <div class="pill-row">
+          <a class="pill" id="wazeBtn" target="_blank" rel="noopener" href="#">Waze</a>
+          <a class="pill ghost" id="mapsBtn" target="_blank" rel="noopener" href="#">Google Maps</a>
+          <button class="pill ghost" id="icsBtn" type="button">Save the Date</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ TIMELINE ══════════ -->
+  <section class="timeline">
+    <h2 class="orange-title rv">Our Timeline</h2>
+    <div class="timeline-list" id="timeline"></div>
+  </section>
+
+  <!-- ══════════ RSVP ══════════ -->
+  <section class="rsvp-scene" id="rsvp">
+    <div class="bg"></div><div class="bg-tint"></div>
+    <div class="rsvp-envelope rv">
+      <div class="rsvp-note">
+        <h2>Kindly<br>Rsvp</h2>
+        <p class="lead" id="rsvpLead"></p>
+
+        <form class="rsvp-form" id="rsvpForm" novalidate>
+          <div class="field">
+            <label for="fName">Name</label>
+            <input id="fName" name="name" type="text" placeholder="Nama penuh" autocomplete="name" required>
+            <span class="err" data-err="name"></span>
+          </div>
+
+          <div class="field">
+            <label for="fPhone">Phone</label>
+            <input id="fPhone" name="phone" type="tel" inputmode="tel" placeholder="012-345 6789" autocomplete="tel" required>
+            <span class="err" data-err="phone"></span>
+          </div>
+
+          <div class="field">
+            <label id="attLabel">Attending?</label>
+            <div class="seg" role="group" aria-labelledby="attLabel">
+              <button type="button" data-att="yes" aria-pressed="true">Yes, InsyaAllah</button>
+              <button type="button" data-att="no" aria-pressed="false">Sorry, can’t</button>
+            </div>
+          </div>
+
+          <div class="field" id="paxField">
+            <label for="fPax">Number of guests</label>
+            <select id="fPax" name="pax"></select>
+          </div>
+
+          <div class="field">
+            <label for="fSide">You are a guest of</label>
+            <select id="fSide" name="side">
+              <option value="Both">Both</option>
+              <option value="Fatehah">Fatehah (bride)</option>
+              <option value="Syazril">Syazril (groom)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="fWish">Wishes for the couple <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+            <textarea id="fWish" name="wish" rows="3" maxlength="300" placeholder="Selamat pengantin baru…"></textarea>
+          </div>
+
+          <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <button class="pill" type="submit" id="rsvpSubmit">Send RSVP</button>
+        </form>
+
+        <p class="rsvp-status" id="rsvpStatus" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PRAYER ══════════ -->
+  <section class="prayer">
+    <article class="paper-card rv">
+      <p class="arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
+      <p>Ya Allah, bless this wedding ceremony and bestow Your blessings and mercy upon this bridal couple.</p>
+      <p>Grant them happiness, mutual understanding, and everlasting love.</p>
+      <p>Bestow upon them righteous children, and make their household full of blessings and peace.</p>
+      <p>Amen ya Rabbal Alamin</p>
+      <div class="flourish">❦</div>
+    </article>
+  </section>
+
+  <!-- ══════════ REGISTRY ══════════ -->
+  <section class="registry" id="registry">
+    <h2 class="orange-title rv">Registry</h2>
+    <p class="registry-copy rv" style="--i:1" id="registryCopy"></p>
+    <div class="registry-actions rv" style="--i:2" id="registryActions"></div>
+    <div class="acct rv" style="--i:3" id="acct"></div>
+  </section>
+
+  <!-- ══════════ CONTACT ══════════ -->
+  <section class="contact" id="contact">
+    <article class="paper-card rv">
+      <h2 class="orange-title">Contact</h2>
+      <div class="flourish">❦</div>
+      <div id="contacts"></div>
+      <div class="flourish">❦</div>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <span id="footerNames"></span>
+  <small id="footerMeta"></small>
+</footer>
+
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Pause music">
+  <span class="eq"><i></i><i></i><i></i></span>
+</button>
+<div class="toast" id="toast" role="status"></div>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-clock" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width="2"/><path d="M32 14v5M32 45v5M14 32h5M45 32h5M32 32l5-12M32 32l9 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-rings" viewBox="0 0 64 64"><path d="M19 51c1-12 2-22 9-24M45 51c-1-12-2-22-9-24M24 16c0 5 3 9 8 9s8-4 8-9-3-8-8-8-8 3-8 8Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 52h24M26 31l6 5 6-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-dining" viewBox="0 0 64 64"><path d="M18 9v20M13 9v12c0 5 10 5 10 0V9M18 29v26M45 9c-7 9-7 18 0 23v23M45 9v23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M28 36c5 4 11 4 16 0" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 64 64"><path d="M11 21h10l4-6h14l4 6h10v30H11Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="32" cy="36" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M47 27h1" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 64 64"><path d="M32 50S13 38 13 26a10 10 0 0 1 19-4 10 10 0 0 1 19 4c0 12-19 24-19 24Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

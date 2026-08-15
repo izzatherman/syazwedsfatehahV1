@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#EFEFE8">
+<title>Wedding Fatehah &amp; Syazril · Guest List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#EFEFE8; --surface:#FFFDF7; --ink:#23231E; --muted:#6F6F64; --faint:#9A9A8E;
+  --orange:#D36D35; --olive:#6B7A46; --line:rgba(35,35,30,.1);
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Poppins',system-ui,Arial,sans-serif; --script:'Great Vibes',cursive;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+button{border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.wrap{width:min(1120px,100%);margin:0 auto;padding:0 clamp(14px,3vw,28px)}
+
+/* ── lock ── */
+.lock{min-height:100svh;display:grid;place-items:center;padding:24px}
+.lock-card{width:min(380px,100%);padding:clamp(28px,6vw,44px);background:var(--surface);border:1px solid var(--line);text-align:center}
+.lock-card h1{margin:0 0 4px;font:400 42px/1 var(--script);color:var(--orange)}
+.lock-card p{margin:0 0 22px;font-size:12.5px;color:var(--muted)}
+.lock-card input{width:100%;height:46px;padding:0 14px;border:1px solid var(--line);background:#fff;font-family:var(--serif);font-size:17px;text-align:center;letter-spacing:.1em}
+.lock-card .btn{width:100%;margin-top:10px}
+.lock-err{margin:12px 0 0;font-size:12px;color:#B03A2E;min-height:16px}
+
+/* ── shell ── */
+.top{position:sticky;top:0;z-index:10;background:rgba(239,239,232,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:12px;min-height:62px;padding:10px 0;flex-wrap:wrap}
+.top h1{margin:0;font:400 30px/1 var(--script);color:var(--orange)}
+.top .sub{font-size:11px;color:var(--faint);letter-spacing:.04em}
+.top .spacer{margin-left:auto}
+.btn{
+  display:inline-grid;place-items:center;min-height:40px;padding:0 16px;border-radius:999px;
+  background:var(--orange);color:#fff;font:500 11.5px/1 var(--sans);letter-spacing:.08em;
+  transition:transform .25s var(--ease),background .25s var(--ease)
+}
+.btn:hover{transform:translateY(-1px);background:#C05F28}
+.btn.ghost{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 1px var(--line)}
+.btn.ghost:hover{background:#fff;color:var(--ink)}
+
+section.pad{padding:clamp(18px,3vw,28px) 0}
+
+/* ── stat tiles ── */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tile{padding:clamp(16px,2.4vw,22px);background:var(--surface);border:1px solid var(--line)}
+.tile .k{display:flex;align-items:center;gap:6px;font:500 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.tile .k i{width:8px;height:8px;border-radius:50%;flex:none}
+.tile .v{margin-top:10px;font:500 clamp(30px,5vw,46px)/1 var(--serif)}
+.tile .n{margin-top:5px;font-size:11.5px;color:var(--muted)}
+.tile.hero{background:var(--ink);border-color:var(--ink)}
+.tile.hero .k{color:rgba(255,253,247,.55)}
+.tile.hero .v{color:#FFFDF7}
+.tile.hero .n{color:rgba(255,253,247,.6)}
+
+/* ── countdown ── */
+.cd-card{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.cd-head h2{margin:0;font:500 15px/1.2 var(--sans)}
+.cd{display:flex;gap:clamp(10px,2.4vw,26px);align-items:flex-start}
+.cd-unit{min-width:clamp(52px,7vw,70px);text-align:center;perspective:500px}
+.cd-unit strong{display:block;font:500 clamp(28px,4.4vw,42px)/1 var(--serif);color:var(--ink)}
+.cd-unit strong.flip{animation:cdflip .5s var(--ease)}
+@keyframes cdflip{from{transform:rotateX(-80deg);opacity:.3}to{transform:none;opacity:1}}
+.cd-unit span{display:block;margin-top:7px;font:500 9px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.cd-done{font:400 22px/1.3 var(--serif);color:var(--orange)}
+
+/* ── card / chart ── */
+.card{background:var(--surface);border:1px solid var(--line);padding:clamp(16px,2.6vw,24px)}
+.card h2{margin:0;font:500 15px/1.2 var(--sans);letter-spacing:.01em}
+.card .hint{margin:3px 0 0;font-size:11.5px;color:var(--faint)}
+.chart-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.chart-wrap{position:relative}
+svg.chart{display:block;width:100%;height:auto;overflow:visible}
+.tip{
+  position:absolute;z-index:5;pointer-events:none;transform:translate(-50%,-120%);
+  padding:8px 11px;background:var(--ink);color:#FFFDF7;font-size:11.5px;line-height:1.45;white-space:nowrap;
+  opacity:0;transition:opacity .15s ease
+}
+.tip.show{opacity:1}
+.tip b{font-weight:500}
+
+/* ── filters ── */
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.filters input[type=search]{flex:1 1 200px;min-height:40px;padding:0 14px;border:1px solid var(--line);background:var(--surface);font-family:var(--serif);font-size:15px}
+.chips{display:flex;gap:6px}
+.chip{min-height:40px;padding:0 14px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font:500 11.5px/1 var(--sans);color:var(--muted);display:grid;place-items:center}
+.chip[aria-pressed="true"]{background:var(--ink);color:#FFFDF7;box-shadow:none}
+
+/* ── table ── */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{
+  text-align:left;padding:10px 12px;font:500 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none
+}
+th[aria-sort]{color:var(--ink)}
+td{padding:12px;border-bottom:1px solid rgba(35,35,30,.055);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.name{font-weight:400;font-size:14.5px}
+.meta{font-size:11.5px;color:var(--faint)}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:11px;white-space:nowrap}
+.badge i{width:7px;height:7px;border-radius:50%;flex:none}
+.badge.yes{background:rgba(107,122,70,.14);color:#4C5733}
+.badge.no{background:rgba(138,99,62,.14);color:#7A5230}
+.wish{margin-top:6px;font-family:var(--serif);font-size:14px;color:var(--muted);line-height:1.5;max-width:44ch}
+a.tel{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+a.tel:hover{color:var(--orange)}
+
+.empty{padding:44px 20px;text-align:center;color:var(--faint)}
+.empty b{display:block;margin-bottom:6px;font:400 26px/1.2 var(--serif);color:var(--muted)}
+.cards{display:none;flex-direction:column;gap:10px}
+.gcard{padding:14px;background:var(--surface);border:1px solid var(--line)}
+.gcard .row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+footer.note{padding:26px 0 40px;font-size:11px;color:var(--faint);text-align:center}
+
+@media(max-width:860px){
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .cd-card{gap:12px}
+  .cd{width:100%;justify-content:space-between;gap:6px}
+  table{display:none}
+  .cards{display:flex}
+}
+@media(max-width:520px){
+  .top h1{font-size:24px}
+  .lock-card h1{font-size:34px}
+}
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- ── LOCK ── -->
+<div class="lock" id="lock">
+  <form class="lock-card" id="lockForm">
+    <h1>Wedding Fatehah &amp; Syazril</h1>
+    <p>Guest list · 12 December 2026</p>
+    <input id="pass" type="password" placeholder="Passcode" autocomplete="current-password" aria-label="Passcode">
+    <button class="btn" type="submit" id="unlock">Unlock</button>
+    <p class="lock-err" id="lockErr"></p>
+  </form>
+</div>
+
+<!-- ── APP ── -->
+<div id="app" hidden>
+  <header class="top">
+    <div class="wrap top-in">
+      <div>
+        <h1>Wedding Fatehah &amp; Syazril</h1>
+        <div class="sub" id="updated">—</div>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn ghost" id="refresh" type="button">Refresh</button>
+      <button class="btn" id="export" type="button">Export CSV</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="pad">
+      <div class="card cd-card">
+        <div class="cd-head">
+          <h2>The big day</h2>
+          <p class="hint">Saturday, 12 December 2026 · Laman Sri Pinang, Port Dickson</p>
+        </div>
+        <div class="cd" id="cd" aria-label="Countdown to the wedding"></div>
+      </div>
+    </section>
+
+    <section class="pad">
+      <div class="tiles">
+        <div class="tile hero">
+          <div class="k">Confirmed guests</div>
+          <div class="v" id="tPax">0</div>
+          <div class="n" id="tPaxNote">total pax attending</div>
+        </div>
+        <div class="tile">
+          <div class="k"><i style="background:var(--olive)"></i>Attending</div>
+          <div class="v" id="tYes">0</div>
+          <div class="n">replies saying yes</div>
+        </div>
+        <div class="tile">
+          <div class="k"><i style="background:#8A633E"></i>Can’t make it</div>
+          <div class="v" id="tNo">0</div>
+          <div class="n">replies saying no</div>
+        </div>
+        <div class="tile">
+          <div class="k">Responses</div>
+          <div class="v" id="tAll">0</div>
+          <div class="n" id="tAllNote">total replies</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pad">
+      <div class="card">
+        <div class="chart-head">
+          <div>
+            <h2>Confirmed pax over time</h2>
+            <p class="hint">Running total of guests who said yes</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <svg class="chart" id="chart" viewBox="0 0 760 220" preserveAspectRatio="none" role="img" aria-label="Cumulative confirmed guests over time"></svg>
+          <div class="tip" id="tip"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pad">
+      <div class="filters">
+        <input type="search" id="search" placeholder="Search name, phone or wish…" aria-label="Search guests">
+        <div class="chips" role="group" aria-label="Filter">
+          <button class="chip" data-f="all" aria-pressed="true">All</button>
+          <button class="chip" data-f="yes" aria-pressed="false">Attending</button>
+          <button class="chip" data-f="no"  aria-pressed="false">Can’t make it</button>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0;overflow:hidden">
+        <table id="table">
+          <thead><tr>
+            <th data-sort="name">Guest</th>
+            <th data-sort="attending">Status</th>
+            <th data-sort="pax">Pax</th>
+            <th data-sort="side">Side</th>
+            <th data-sort="ts" aria-sort="descending">Replied</th>
+          </tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <div class="cards" id="cards"></div>
+        <div class="empty" id="empty" hidden><b>No replies yet</b>They’ll appear here the moment someone RSVPs.</div>
+      </div>
+    </section>
+
+    <footer class="note">Data lives in your Google Sheet — nothing is stored in this page.</footer>
+  </main>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script>
+(() => {
+'use strict';
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ENDPOINT = (window.CONFIG && CONFIG.rsvp && CONFIG.rsvp.endpoint) || '';
+
+let guests = [], filter = 'all', query = '', sortKey = 'ts', sortDir = -1;
+
+/* ── auth ── */
+const keyStore = {
+  get: () => sessionStorage.getItem('gl-key') || '',
+  set: v => sessionStorage.setItem('gl-key', v),
+  clear: () => sessionStorage.removeItem('gl-key')
+};
+
+async function load(key){
+  if (!ENDPOINT) throw new Error('No endpoint set in assets/js/config.js');
+  const res  = await fetch(`${ENDPOINT}?key=${encodeURIComponent(key)}&t=${Date.now()}`);
+  const data = await res.json();
+  if (!data.ok) throw new Error('Wrong passcode');
+  return data;
+}
+
+$('#lockForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const key = $('#pass').value.trim();
+  $('#lockErr').textContent = '';
+  $('#unlock').textContent = 'Checking…';
+  try {
+    const data = await load(key);
+    keyStore.set(key);
+    show(data);
+  } catch (err) {
+    $('#lockErr').textContent = err.message;
+  } finally {
+    $('#unlock').textContent = 'Unlock';
+  }
+});
+
+function show(data){
+  guests = data.guests || [];
+  $('#lock').hidden = true;
+  $('#app').hidden = false;
+  $('#updated').textContent = 'Updated ' + new Date(data.updated).toLocaleString('en-MY', {dateStyle:'medium', timeStyle:'short'});
+  render();
+}
+
+$('#refresh').addEventListener('click', async () => {
+  $('#refresh').textContent = 'Refreshing…';
+  try { show(await load(keyStore.get())); }
+  catch { keyStore.clear(); location.reload(); }
+  finally { $('#refresh').textContent = 'Refresh'; }
+});
+
+/* ── countdown to the wedding ── */
+const WEDDING = new Date('2026-12-12T11:00:00+08:00').getTime();
+(function countdown(){
+  const host = $('#cd');
+  const units = [['Days', 864e5], ['Hours', 36e5], ['Minutes', 6e4], ['Seconds', 1e3]];
+  host.innerHTML = units.map(([label]) =>
+    `<div class="cd-unit"><strong data-u="${label}">00</strong><span>${label}</span></div>`).join('');
+
+  const cells = {};
+  host.querySelectorAll('[data-u]').forEach(el => cells[el.dataset.u] = el);
+
+  const tick = () => {
+    const diff = WEDDING - Date.now();
+    if (diff <= 0){
+      host.innerHTML = '<span class="cd-done">The day is here — selamat pengantin baru!</span>';
+      return;
+    }
+    let rest = diff;
+    units.forEach(([label, ms]) => {
+      const value = String(Math.floor(rest / ms)).padStart(2, '0');
+      rest %= ms;
+      const cell = cells[label];
+      if (!cell || cell.textContent === value) return;
+      cell.textContent = value;
+      cell.classList.remove('flip'); void cell.offsetWidth; cell.classList.add('flip');
+    });
+  };
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ── stats ── */
+function render(){
+  const yes = guests.filter(g => g.attending);
+  const no  = guests.filter(g => !g.attending);
+  const pax = yes.reduce((sum, g) => sum + g.pax, 0);
+
+  $('#tPax').textContent = pax;
+  $('#tYes').textContent = yes.length;
+  $('#tNo').textContent  = no.length;
+  $('#tAll').textContent = guests.length;
+  $('#tPaxNote').textContent = `across ${yes.length} ${yes.length === 1 ? 'reply' : 'replies'}`;
+  $('#tAllNote').textContent = guests.length ? `${Math.round(yes.length / guests.length * 100)}% attending` : 'total replies';
+
+  drawChart(yes);
+  drawTable();
+}
+
+/* ── chart: single series, cumulative pax ── */
+function drawChart(yes){
+  const svg = $('#chart');
+  const W = 760, H = 220, padL = 40, padR = 18, padT = 16, padB = 28;
+
+  if (!yes.length){
+    svg.innerHTML = `<text x="${W/2}" y="${H/2}" text-anchor="middle" fill="#9A9A8E" font-size="13" font-family="Poppins,sans-serif">No confirmed guests yet</text>`;
+    return;
+  }
+
+  // one point per day, cumulative
+  const byDay = new Map();
+  [...yes].sort((a, b) => new Date(a.ts) - new Date(b.ts)).forEach(g => {
+    const day = new Date(g.ts); day.setHours(0, 0, 0, 0);
+    const k = day.getTime();
+    byDay.set(k, (byDay.get(k) || 0) + g.pax);
+  });
+
+  let running = 0;
+  const points = [...byDay.entries()].sort((a, b) => a[0] - b[0])
+    .map(([t, v]) => ({ t, v: (running += v) }));
+
+  if (points.length < 2){
+    const only = points[0];
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    svg.setAttribute('viewBox', '0 0 760 150');
+    svg.innerHTML = `
+      <text x="${W/2}" y="${H/2 - 8}" text-anchor="middle" fill="#23231E" font-size="30" font-family="Cormorant Garamond,serif">${only.v} pax confirmed so far</text>
+      <text x="${W/2}" y="${H/2 + 24}" text-anchor="middle" fill="#9A9A8E" font-size="13" font-family="Poppins,sans-serif">The trend line appears once replies arrive on more than one day</text>`;
+    return;
+  }
+
+  svg.setAttribute('preserveAspectRatio', 'none');
+  svg.setAttribute('viewBox', '0 0 760 220');
+  const maxY = Math.max(4, points[points.length - 1].v);
+  const minT = points[0].t, maxT = points[points.length - 1].t;
+  const spanT = Math.max(1, maxT - minT);
+  const x = t => padL + (t - minT) / spanT * (W - padL - padR);
+  const y = v => H - padB - v / maxY * (H - padT - padB);
+
+  // recessive grid + y labels
+  const ticks = [0, .5, 1].map(f => Math.round(maxY * f));
+  let grid = ticks.map(v => `
+    <line x1="${padL}" x2="${W - padR}" y1="${y(v)}" y2="${y(v)}" stroke="rgba(35,35,30,.08)" stroke-width="1"/>
+    <text x="${padL - 8}" y="${y(v) + 4}" text-anchor="end" fill="#9A9A8E" font-size="10" font-family="Poppins,sans-serif">${v}</text>`).join('');
+
+  const line = points.map((p, i) => `${i ? 'L' : 'M'}${x(p.t).toFixed(1)},${y(p.v).toFixed(1)}`).join(' ');
+  const area = points.length > 1
+    ? `${line} L${x(maxT).toFixed(1)},${y(0)} L${x(minT).toFixed(1)},${y(0)} Z` : '';
+
+  const last = points[points.length - 1];
+  const fmt = t => new Date(t).toLocaleDateString('en-MY', {day:'numeric', month:'short'});
+
+  svg.innerHTML = `
+    <defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D36D35" stop-opacity=".18"/>
+      <stop offset="100%" stop-color="#D36D35" stop-opacity="0"/>
+    </linearGradient></defs>
+    ${grid}
+    ${area ? `<path d="${area}" fill="url(#fade)"/>` : ''}
+    ${points.length > 1 ? `<path d="${line}" fill="none" stroke="#D36D35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>` : ''}
+    <circle cx="${x(last.t)}" cy="${y(last.v)}" r="4.5" fill="#D36D35" stroke="#FFFDF7" stroke-width="2"/>
+    <text x="${x(last.t) - 8}" y="${y(last.v) - 12}" text-anchor="end" fill="#23231E" font-size="12" font-weight="500" font-family="Poppins,sans-serif">${last.v} pax</text>
+    <text x="${padL}" y="${H - 8}" fill="#9A9A8E" font-size="10" font-family="Poppins,sans-serif">${fmt(minT)}</text>
+    ${points.length > 1 ? `<text x="${W - padR}" y="${H - 8}" text-anchor="end" fill="#9A9A8E" font-size="10" font-family="Poppins,sans-serif">${fmt(maxT)}</text>` : ''}
+    <g id="hover"></g>`;
+
+  // hover crosshair + tooltip
+  const tip = $('#tip'), hover = svg.querySelector('#hover');
+  const wrap = svg.parentElement;
+  svg.onpointermove = event => {
+    const box = svg.getBoundingClientRect();
+    const svgX = (event.clientX - box.left) / box.width * W;
+    let near = points[0];
+    points.forEach(p => { if (Math.abs(x(p.t) - svgX) < Math.abs(x(near.t) - svgX)) near = p; });
+    hover.innerHTML = `
+      <line x1="${x(near.t)}" x2="${x(near.t)}" y1="${padT}" y2="${H - padB}" stroke="rgba(35,35,30,.18)" stroke-width="1"/>
+      <circle cx="${x(near.t)}" cy="${y(near.v)}" r="5" fill="#D36D35" stroke="#FFFDF7" stroke-width="2"/>`;
+    tip.innerHTML = `<b>${near.v} pax</b><br>${fmt(near.t)}`;
+    tip.style.left = (x(near.t) / W * wrap.clientWidth) + 'px';
+    tip.style.top  = (y(near.v) / H * wrap.clientHeight) + 'px';
+    tip.classList.add('show');
+  };
+  svg.onpointerleave = () => { hover.innerHTML = ''; tip.classList.remove('show'); };
+}
+
+/* ── table ── */
+function visible(){
+  return guests
+    .filter(g => filter === 'all' || (filter === 'yes') === g.attending)
+    .filter(g => !query || [g.name, g.phone, g.wish, g.side, g.tag].join(' ').toLowerCase().includes(query))
+    .sort((a, b) => {
+      const A = sortKey === 'ts' ? new Date(a.ts) : a[sortKey];
+      const B = sortKey === 'ts' ? new Date(b.ts) : b[sortKey];
+      return (A > B ? 1 : A < B ? -1 : 0) * sortDir;
+    });
+}
+
+const when = ts => new Date(ts).toLocaleDateString('en-MY', {day:'numeric', month:'short', year:'2-digit'});
+const badge = g => g.attending
+  ? '<span class="badge yes"><i style="background:#6B7A46"></i>Attending</span>'
+  : '<span class="badge no"><i style="background:#8A633E"></i>Can’t make it</span>';
+
+function drawTable(){
+  const rows = visible();
+  $('#empty').hidden = rows.length > 0;
+
+  $('#rows').innerHTML = rows.map(g => `
+    <tr>
+      <td>
+        <div class="name">${esc(g.name)}</div>
+        <div class="meta">${g.phone ? `<a class="tel" href="tel:${esc(g.phone)}">${esc(g.phone)}</a>` : ''}${g.tag ? ` · invited as ${esc(g.tag)}` : ''}</div>
+        ${g.wish ? `<div class="wish">“${esc(g.wish)}”</div>` : ''}
+      </td>
+      <td>${badge(g)}</td>
+      <td>${g.attending ? g.pax : '—'}</td>
+      <td class="meta">${esc(g.side || '—')}</td>
+      <td class="meta">${when(g.ts)}</td>
+    </tr>`).join('');
+
+  $('#cards').innerHTML = rows.map(g => `
+    <div class="gcard">
+      <div class="row">
+        <div>
+          <div class="name">${esc(g.name)}</div>
+          <div class="meta">${g.phone ? `<a class="tel" href="tel:${esc(g.phone)}">${esc(g.phone)}</a>` : ''} · ${when(g.ts)}</div>
+        </div>
+        <div style="text-align:right">
+          ${badge(g)}
+          ${g.attending ? `<div class="meta" style="margin-top:6px">${g.pax} pax</div>` : ''}
+        </div>
+      </div>
+      ${g.wish ? `<div class="wish">“${esc(g.wish)}”</div>` : ''}
+    </div>`).join('');
+}
+
+/* ── controls ── */
+$('#search').addEventListener('input', e => { query = e.target.value.toLowerCase().trim(); drawTable(); });
+document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => {
+  filter = chip.dataset.f;
+  document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+  drawTable();
+}));
+document.querySelectorAll('th[data-sort]').forEach(th => th.addEventListener('click', () => {
+  const key = th.dataset.sort;
+  sortDir = sortKey === key ? -sortDir : 1;
+  sortKey = key;
+  document.querySelectorAll('th').forEach(h => h.removeAttribute('aria-sort'));
+  th.setAttribute('aria-sort', sortDir === 1 ? 'ascending' : 'descending');
+  drawTable();
+}));
+
+$('#export').addEventListener('click', () => {
+  const rows = visible();
+  const head = ['Name', 'Phone', 'Attending', 'Pax', 'Side', 'Wishes', 'Invited As', 'Replied'];
+  const csv  = [head].concat(rows.map(g => [
+    g.name, g.phone, g.attending ? 'Yes' : 'No', g.attending ? g.pax : 0, g.side, g.wish, g.tag, new Date(g.ts).toLocaleString('en-MY')
+  ])).map(r => r.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\r\n');
+
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(new Blob(['﻿' + csv], {type:'text/csv;charset=utf-8'}));
+  link.download = `guest-list-${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+});
+
+/* ── auto-unlock if this session already authenticated ── */
+(async () => {
+  const key = keyStore.get();
+  if (!key) return;
+  try { show(await load(key)); } catch { keyStore.clear(); }
+})();
+})();
+</script>
+</body>
+</html>

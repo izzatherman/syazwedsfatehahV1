@@ -49,7 +49,7 @@ window.CONFIG = {
   /* ── Registry ───────────────────────────────────────────── */
   registry: {
     intro: 'We are so grateful to have you in our lives. If you’re thinking of giving us a gift to celebrate our union, a monetary contribution or an item from our wishlist would be greatly appreciated. Thank you for being a part of our story!',
-    bank:     { name: 'GX BANK', no: '8888007285455', holder: 'MUHAMMAD SYAZRIL BIN ABD HALIM' },
+    bank:     { name: 'GX BANK', no: '8888007285455', holder: 'Nurul Fatehah Binti Abu Bakar' },
     qrImage:  '',                       // e.g. 'assets/img/duitnow-qr.png'
     wishlist: ''                        // e.g. 'https://www.shopee.com.my/...'
   },

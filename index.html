@@ -1,57 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fatehah & Syazril</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; background: #211813; font-family: Arial, sans-serif; }
-
-    #welcome {
-      position: fixed; inset: 0; z-index: 10;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; color: white; padding: 24px;
-      background: linear-gradient(rgba(35,22,15,.45), rgba(35,22,15,.78)), #5b4030;
-    }
-
-    h1 { font-family: Georgia, serif; font-size: clamp(34px, 8vw, 58px); margin: 0 0 12px; }
-    p { margin: 0 0 28px; font-size: 16px; }
-
-    button {
-      border: 0; border-radius: 999px; padding: 16px 30px;
-      font-size: 16px; cursor: pointer; color: #3c281d;
-      background: #f5dfae;
-    }
-
-    iframe { width: 100%; height: 100vh; border: 0; display: block; }
+    :root { --ink:#242219; --paper:#eee9da; --sage:#878b5e; --sage-dark:#606345; --gold:#b49d62; --line:rgba(83,77,53,.23); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:Montserrat,Arial,sans-serif; }
+    button, a { -webkit-tap-highlight-color:transparent; }
+    .nav { position:fixed; inset:0 0 auto; z-index:20; height:66px; display:flex; align-items:center; justify-content:space-between; padding:0 clamp(20px,5vw,76px); background:rgba(246,244,235,.94); border-bottom:1px solid rgba(31,31,23,.12); backdrop-filter:blur(12px); transform:translateY(-110%); transition:transform .55s ease; }
+    body.is-open .nav { transform:translateY(0); }
+    .brand { font-weight:600; font-size:14px; letter-spacing:.02em; }
+    .nav-links { display:flex; gap:clamp(14px,2.6vw,34px); }
+    .nav a { color:#4a4a41; text-decoration:none; font-size:12px; }
+    .nav a:hover { color:#7e7046; }
+    .gate { position:fixed; inset:0; z-index:40; display:grid; place-items:center; overflow:auto; background:linear-gradient(rgba(10,12,7,.32),rgba(10,12,7,.56)),url('assets/hero-floral.png') center/cover; transition:opacity .8s ease, visibility .8s ease; }
+    .gate::after { content:""; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 0 110px rgba(0,0,0,.48); }
+    body.is-open .gate { opacity:0; visibility:hidden; }
+    .gate-inner { position:relative; z-index:1; color:#fffdf5; text-align:center; padding:38px 20px; width:min(920px,100%); }
+    .eyebrow { margin:0 0 12px; font-family:'Cormorant Garamond',serif; font-size:clamp(18px,2vw,28px); letter-spacing:.035em; }
+    .couple { margin:0; font-family:'Great Vibes',cursive; font-weight:400; font-size:clamp(64px,10vw,130px); line-height:.94; text-shadow:0 2px 17px rgba(0,0,0,.28); }
+    .envelope-wrap { width:min(450px,80vw); margin:22px auto 20px; cursor:pointer; background:none; border:0; padding:0; display:block; }
+    .envelope { aspect-ratio:1.52; position:relative; filter:drop-shadow(0 18px 18px rgba(0,0,0,.35)); transition:transform .45s ease; }
+    .envelope-wrap:hover .envelope { transform:translateY(-7px) rotate(-1deg); }
+    .envelope-body { position:absolute; inset:15% 0 0; overflow:hidden; background:linear-gradient(145deg,#94966a,#70734e); clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%); }
+    .envelope-body::before,.envelope-body::after { content:""; position:absolute; inset:0; background:linear-gradient(45deg,transparent 49.7%,rgba(62,65,42,.35) 50%,transparent 50.3%); }
+    .envelope-body::after { transform:scaleX(-1); }
+    .flap { position:absolute; inset:0 0 auto; height:63%; transform-origin:top; background:linear-gradient(160deg,#afb081,#77794f); clip-path:polygon(0 0,100% 0,50% 100%); transition:transform .55s ease; }
+    .monogram { position:absolute; z-index:2; top:42%; left:50%; transform:translate(-50%,-50%); width:88px; height:88px; display:grid; place-items:center; border-radius:50%; border:3px double rgba(255,252,229,.87); background:radial-gradient(circle,#d8cfad,#a59566); color:#48442d; font-family:'Great Vibes',cursive; font-size:43px; box-shadow:0 2px 7px rgba(0,0,0,.35); }
+    .envelope-wrap:hover .flap { transform:rotateX(22deg); }
+    .tap { margin:0; font-family:'Cormorant Garamond',serif; font-size:clamp(17px,2vw,25px); letter-spacing:.03em; }
+    .page { min-height:100vh; }
+    .hero { position:relative; min-height:100vh; display:grid; place-items:center; padding:100px 20px 55px; color:#fffdf5; text-align:center; background:linear-gradient(rgba(10,12,7,.33),rgba(10,12,7,.56)),url('assets/hero-floral.png') center/cover; }
+    .hero::after { content:""; position:absolute; inset:0; box-shadow:inset 0 0 100px rgba(0,0,0,.48); pointer-events:none; }
+    .hero-content { position:relative; z-index:1; }
+    .hero .date { margin:22px 0 0; font-size:11px; letter-spacing:.3em; text-transform:uppercase; }
+    .section { padding:clamp(74px,10vw,130px) 22px; }
+    .ornament { color:var(--gold); letter-spacing:.5em; font-size:18px; margin:0 0 14px; }
+    .section-title { margin:0; font:500 clamp(38px,5vw,62px)/1 'Cormorant Garamond',serif; }
+    .invite { text-align:center; background:radial-gradient(circle at 50% 0,#faf9f0,transparent 62%),#e8e3d4; }
+    .invite-card { width:min(770px,100%); margin:34px auto 0; padding:clamp(35px,7vw,76px) clamp(24px,8vw,100px); border:1px solid var(--line); background:rgba(255,254,248,.55); box-shadow:0 10px 35px rgba(60,50,25,.08); }
+    .bismillah { font:italic 21px/1.2 'Cormorant Garamond',serif; margin:0 0 34px; }
+    .invite-copy { font:400 18px/1.6 'Cormorant Garamond',serif; }
+    .invite-copy strong { display:block; font-family:Montserrat,sans-serif; font-size:12px; letter-spacing:.09em; margin:6px 0; }
+    .invite-names { margin:28px 0; font:400 clamp(43px,7vw,74px)/.9 'Great Vibes',cursive; color:#4e5037; }
+    .verse { max-width:590px; margin:32px auto 0; font:italic 16px/1.6 'Cormorant Garamond',serif; color:#5f5d50; }
+    .details { background:#6d7050; color:#f9f6ea; text-align:center; }
+    .details .ornament { color:#e1d3a1; }
+    .details-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; width:min(800px,100%); margin:42px auto 0; }
+    .detail { padding:21px 12px; border:1px solid rgba(255,255,255,.26); }
+    .detail b { display:block; font:500 25px/1 'Cormorant Garamond',serif; color:#f4e8b8; margin-bottom:7px; }
+    .detail span { font-size:10px; letter-spacing:.08em; text-transform:uppercase; }
+    .location { text-align:center; background:#f5f1e7; }
+    .location-card { width:min(610px,100%); margin:35px auto 0; padding:34px 25px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .location-card h3 { margin:6px 0 8px; font:500 30px 'Cormorant Garamond',serif; }
+    .location-card p { max-width:460px; margin:0 auto 23px; font:15px/1.6 'Cormorant Garamond',serif; }
+    .button { display:inline-block; padding:13px 24px; border:1px solid #737653; color:#4e5138; text-decoration:none; background:transparent; font:500 11px Montserrat,sans-serif; letter-spacing:.14em; text-transform:uppercase; transition:.2s; }
+    .button:hover { background:#737653; color:#fff; }
+    .timeline { background:#e2dccb; }
+    .timeline-wrap { width:min(770px,100%); margin:43px auto 0; border-left:1px solid #aaa583; }
+    .timeline-item { position:relative; padding:0 0 31px 31px; }
+    .timeline-item::before { content:""; position:absolute; left:-6px; top:6px; width:11px; height:11px; border-radius:50%; background:#777950; border:3px solid #e2dccb; }
+    .timeline-time { display:block; color:#777950; font-size:11px; letter-spacing:.13em; }
+    .timeline-item h3 { margin:5px 0 0; font:500 28px 'Cormorant Garamond',serif; }
+    .rsvp { color:#fffdf5; text-align:center; background:linear-gradient(rgba(20,22,13,.48),rgba(20,22,13,.64)),url('assets/hero-floral.png') center/cover fixed; }
+    .rsvp-box { width:min(520px,100%); margin:38px auto 0; padding:35px 24px; border:1px solid rgba(255,255,255,.42); background:rgba(21,23,14,.36); }
+    .rsvp-box p { font:18px/1.6 'Cormorant Garamond',serif; }
+    .button-light { border-color:#f8f0d3; color:#fffdf5; }
+    .button-light:hover { background:#f8f0d3; color:#4d4c37; }
+    .gift { text-align:center; background:#f4f0e4; }
+    .gift-card { width:min(570px,100%); margin:35px auto 0; padding:33px 24px; border:1px solid var(--line); }
+    .gift-card h3 { margin:0 0 10px; font:500 31px 'Cormorant Garamond',serif; }
+    .gift-card p { margin:0; font:16px/1.5 'Cormorant Garamond',serif; }
+    .account { margin-top:22px; font-size:12px; letter-spacing:.08em; line-height:2; }
+    .wishlist { background:#787b5a; color:#fffdf5; text-align:center; }
+    .wishlist p { max-width:510px; margin:18px auto 25px; font:18px/1.6 'Cormorant Garamond',serif; }
+    footer { padding:30px 20px; text-align:center; background:#222419; color:#ece7d8; font:14px 'Cormorant Garamond',serif; }
+    .music-toggle { position:fixed; right:17px; bottom:17px; z-index:30; border:0; width:46px; height:46px; border-radius:50%; display:none; place-items:center; color:#fff; background:#69704f; box-shadow:0 4px 14px rgba(0,0,0,.25); cursor:pointer; }
+    body.is-open .music-toggle { display:grid; }
+    @media(max-width:650px) { .nav { height:56px; padding:0 16px; } .brand { font-size:12px; } .nav-links { gap:11px; } .nav a { font-size:9px; } .details-grid { grid-template-columns:1fr; } .detail { padding:15px; } .rsvp { background-attachment:scroll; } }
   </style>
 </head>
 <body>
+  <audio id="bgMusic" loop preload="auto"><source src="no%20na%20-%20rollerblade%20%28Official%20Music%20Video%29.mp3" type="audio/mpeg"></audio>
 
-  <div id="welcome">
-    <h1>You're Invited</h1>
-    <p>Tap below to open our wedding invitation</p>
-    <button onclick="enterInvitation()">Tap to Enter ♡</button>
-  </div>
+  <nav class="nav" aria-label="Primary navigation">
+    <span class="brand">SyazWedsFatehah</span>
+    <div class="nav-links"><a href="#home">Main Page</a><a href="#rsvp">RSVP</a><a href="#gift">Money Gift</a><a href="#wishlist">Wishlist</a></div>
+  </nav>
 
-  <audio id="bgMusic" loop>
-    <source src=""no na - rollerblade (Official Music Video).mp3" type="audio/mpeg"">
-  </audio>
+  <main>
+    <section class="hero page" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">YOU’VE GOT MAIL FROM</p>
+        <h1 class="couple">Fatehah &amp; Syazril</h1>
+        <p class="date">12 December 2026 · Port Dickson</p>
+      </div>
+    </section>
 
-  <iframe
-    src="https://www.canva.com/design/DAHSWgAa_2A/cVcUGlQX6_cZOjcj34St0g/view"
-    allowfullscreen="allowfullscreen"
-    allow="fullscreen">
-  </iframe>
+    <section class="invite section" id="invitation">
+      <p class="ornament">✦ ✦ ✦</p><h2 class="section-title">An Invitation</h2>
+      <div class="invite-card">
+        <p class="bismillah">In the Name of Allah, the Most Gracious, the Most Merciful</p>
+        <div class="invite-copy">
+          <strong>MOHD SAHFANI BIN HUSSIN</strong><strong>NORSABRINA BINTI DOL MOID</strong>
+          <p>together with</p>
+          <strong>HAJI ABD HALIM BIN MOHD</strong><strong>HAJAH MAIMUNAH BINTI SAMEK</strong>
+          <p>cordially invite you to celebrate the wedding of their beloved children</p>
+        </div>
+        <div class="invite-names">Fatehah<br><span style="font-size:.6em">&amp;</span><br>Syazril</div>
+        <p class="verse">“And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought” — Ar-Rum, Ayah 21</p>
+      </div>
+    </section>
+
+    <section class="details section">
+      <p class="ornament">✦ ✦ ✦</p><h2 class="section-title">Happily Ever After Begins In</h2>
+      <div class="details-grid" id="countdown" aria-label="Wedding countdown"></div>
+    </section>
+
+    <section class="location section">
+      <p class="ornament">✦ ✦ ✦</p><h2 class="section-title">Date and Location</h2>
+      <div class="location-card"><p><b>Date</b></p><h3>12 December 2026</h3><p><b>Time</b><br>11:00 AM – 4:00 PM</p><p><b>Location</b><br>Laman Sri Pinang<br>1478 Persiaran Diana, Batu 4, Jalan Pantai,<br>71050 Port Dickson, Negeri Sembilan</p><a class="button" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Laman+Sri+Pinang%2C+Port+Dickson">Open in Waze / Maps</a></div>
+    </section>
+
+    <section class="timeline section"><p class="ornament">✦ ✦ ✦</p><h2 class="section-title">Our Timeline</h2><div class="timeline-wrap"><div class="timeline-item"><span class="timeline-time">11:30 AM</span><h3>Arrival of Guests</h3></div><div class="timeline-item"><span class="timeline-time">12:30 PM</span><h3>Entrance of Bride &amp; Groom</h3></div><div class="timeline-item"><span class="timeline-time">1:30 PM</span><h3>Makan Beradab</h3></div><div class="timeline-item"><span class="timeline-time">2:30 PM</span><h3>Photography Session</h3></div></div></section>
+
+    <section class="rsvp section" id="rsvp"><p class="ornament">✦ ✦ ✦</p><h2 class="section-title">RSVP</h2><div class="rsvp-box"><p>Your presence will make our day even more meaningful. Please confirm your attendance with the couple.</p><a class="button button-light" href="https://wa.me/" target="_blank" rel="noopener">Confirm Attendance</a></div></section>
+
+    <section class="gift section" id="gift"><p class="ornament">✦ ✦ ✦</p><h2 class="section-title">Money Gift</h2><div class="gift-card"><h3>With Love &amp; Blessings</h3><p>Your presence is already the greatest gift. For those who wish to bless the couple further, bank details can be added here.</p><div class="account">BANK NAME<br><b>ACCOUNT NUMBER</b><br>ACCOUNT HOLDER NAME</div></div></section>
+
+    <section class="wishlist section" id="wishlist"><p class="ornament">✦ ✦ ✦</p><h2 class="section-title">Wishlist</h2><p>For friends and family who would like to send something special, their wishlist link can be placed here.</p><a class="button button-light" href="#" onclick="return false;">Wishlist Coming Soon</a></section>
+  </main>
+
+  <footer>Fatehah &amp; Syazril · 12 December 2026</footer>
+  <button class="music-toggle" type="button" id="musicToggle" aria-label="Pause music">♫</button>
+
+  <section class="gate" id="gate" aria-label="Open wedding invitation">
+    <div class="gate-inner"><p class="eyebrow">YOU’VE GOT MAIL FROM</p><h1 class="couple">Fatehah &amp; Syazril</h1><button class="envelope-wrap" type="button" id="openInvite" aria-label="Tap envelope to open"><span class="envelope"><span class="flap"></span><span class="envelope-body"></span><span class="monogram">F&amp;S</span></span></button><p class="tap">TAP ENVELOPE TO OPEN</p></div>
+  </section>
 
   <script>
-    function enterInvitation() {
-      document.getElementById("bgMusic").play();
-      document.getElementById("welcome").style.display = "none";
-    }
+    const music = document.getElementById('bgMusic');
+    const musicButton = document.getElementById('musicToggle');
+    document.getElementById('openInvite').addEventListener('click', async () => {
+      document.body.classList.add('is-open');
+      try { await music.play(); } catch (e) { console.log('Music needs a user interaction.'); }
+      setTimeout(() => document.getElementById('home').scrollIntoView({behavior:'smooth'}), 350);
+    });
+    musicButton.addEventListener('click', () => { if (music.paused) { music.play(); musicButton.textContent='♫'; musicButton.setAttribute('aria-label','Pause music'); } else { music.pause(); musicButton.textContent='▷'; musicButton.setAttribute('aria-label','Play music'); } });
+    const target = new Date('2026-12-12T00:00:00+08:00');
+    const countdown = document.getElementById('countdown');
+    function updateCountdown() { const diff = Math.max(0, target - new Date()); const values = [['Days',Math.floor(diff/86400000)],['Hours',Math.floor(diff/3600000)%24],['Minutes',Math.floor(diff/60000)%60]]; countdown.innerHTML = values.map(([label,value]) => `<div class="detail"><b>${String(value).padStart(2,'0')}</b><span>${label}</span></div>`).join(''); }
+    updateCountdown(); setInterval(updateCountdown, 30000);
   </script>
-
 </body>
 </html>

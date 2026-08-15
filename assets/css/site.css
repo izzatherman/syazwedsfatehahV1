@@ -205,7 +205,7 @@ body.unsealing .tap-copy,body.unsealing .guest-line{opacity:0;transition:opacity
 }
 .story-caption.show{opacity:1}
 
-.heart-frame{transition:transform 1.25s var(--ease),opacity 1.05s var(--ease)}
+.heart-frame{transition:transform 2s var(--ease),opacity 1.6s var(--ease)}
 .heart-frame.couple{
   position:absolute;left:50%;top:50%;margin:0;
   width:clamp(268px,39vw,440px);
